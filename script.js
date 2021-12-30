@@ -4,21 +4,27 @@ var quizBodyEl = document.getElementById("main-body")
 var timeLeft = 500;
 
 var questions = [
-    {question: "what is the answer?",
-    option1:"this is the first option",
-    option2:"this is the second option",
-    option3:"option 3",
-    answer: "3"},
-    {question: "what is the answer?",
-    option1:"this is the first option",
-    option2:"this is the second option",
-    option3:"option 3",
-    answer: "3"},
-    {question: "what is the answer?",
-    option1:"this is the first option",
-    option2:"this is the second option",
-    option3:"option 3",
-    answer: "3"}
+    {
+        question: "what is the answer?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "3"
+    },
+    {
+        question: "what is the answer?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "3"
+    },
+    {
+        question: "what is the answer?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "3"
+    }
 ]
 
 
@@ -42,9 +48,20 @@ startBtn.addEventListener("click", function () {
     questionEl.appendChild(option3)
     quizBodyEl.appendChild(questionEl)
     questionEl.appendChild(answerEl)
-    answerEl.setAttribute("placeholder","Write your answer here")
+    answerEl.setAttribute("placeholder", "Write your answer here")
     submitEl.textContent = "Submit"
     quizBodyEl.appendChild(submitEl)
+    submitEl.addEventListener("click", function () {
+        if (answerEl.value == questions[i].answer) {
+            console.log("you are right")
+            timeLeft += 15
+        }
+        else {
+            console.log(questions[i].answer)
+            console.log("wrong!")
+            timeLeft -= 5
+        }
+    })
     var timer = setInterval(function () {
         timerEl.textContent = timeLeft
         timeLeft--;
