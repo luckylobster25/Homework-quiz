@@ -56,3 +56,10 @@ li {
     text-align: center;
     display: -webkit-box;
 }
+input {
+    margin-top: 25px;
+    font-size: medium;
+}
+button {
+    margin-top: 15px;
+}

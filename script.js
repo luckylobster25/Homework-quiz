@@ -1,7 +1,7 @@
 var timerEl = document.getElementById("timer")
 var startBtn = document.getElementById("start")
 var quizBodyEl = document.getElementById("main-body")
-var timeLeft = 50;
+var timeLeft = 500;
 
 var questions = [
     {question: "what is the answer?",
@@ -23,10 +23,11 @@ var questions = [
 
 
 startBtn.addEventListener("click", function () {
-    for (i = 0; i < questions.length; i++){
-    
+    var i = 0
     quizBodyEl.textContent = ""
     var questionEl = document.createElement("ol")
+    var answerEl = document.createElement("input")
+    var submitEl = document.createElement("button")
     questionEl.textContent = questions[i].question
     option1 = document.createElement("li")
     option1.textContent = questions[i].option1
@@ -40,7 +41,10 @@ startBtn.addEventListener("click", function () {
     option3.textContent = questions[i].option3
     questionEl.appendChild(option3)
     quizBodyEl.appendChild(questionEl)
-}
+    questionEl.appendChild(answerEl)
+    answerEl.setAttribute("placeholder","Write your answer here")
+    submitEl.textContent = "Submit"
+    quizBodyEl.appendChild(submitEl)
     var timer = setInterval(function () {
         timerEl.textContent = timeLeft
         timeLeft--;
