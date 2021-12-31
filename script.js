@@ -107,12 +107,26 @@ startBtn.addEventListener("click", function () {
             if (answerEl.value == questions[i].answer) {
                 timeLeft += 15
                 num += 1
-                startQuiz(num)
+                console.log(num)
+                if (num < 10) {
+                    startQuiz(num)
+                } else {
+                    clearInterval(timer);
+                    timerEl.textContent = timeLeft
+                    quizBodyEl.textContent = "You completed all ten questions and your time stop at " + timeLeft + "."
+                }
             }
             else {
                 timeLeft -= 10
                 num += 1
-                startQuiz(num)
+                console.log(num)
+                if (num < 10) {
+                    startQuiz(num)
+                } else {
+                    clearInterval(timer);
+                    timerEl.textContent = timeLeft
+                    quizBodyEl.textContent = "You completed all ten questions and your time stop at " + timeLeft + "."
+                }
             }
         })
     }
@@ -124,5 +138,6 @@ startBtn.addEventListener("click", function () {
             timerEl.textContent = 0
             quizBodyEl.textContent = "You ran out of time. You lose!"
         }
+
     }, 1000)
 })
