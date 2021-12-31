@@ -1,7 +1,7 @@
 var timerEl = document.getElementById("timer")
 var startBtn = document.getElementById("start")
 var quizBodyEl = document.getElementById("main-body")
-var timeLeft = 20;
+var timeLeft = 50;
 
 var questions = [
     {
@@ -19,59 +19,59 @@ var questions = [
         answer: "2"
     },
     {
-        question: "what is the answer?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
+        question: "Which one of these is a HTML element tag?",
+        option1: "1. <o>",
+        option2: "2. <hi",
+        option3: "3. <li>",
         answer: "3"
     },
     {
-        question: "question 2?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
+        question: "Which Javascript code is not right?",
+        option1: "1. var time = 50",
+        option2: "2. consolelog('hi') ",
+        option3: "3. document.getElementById('btn')",
+        answer: "2"
+    },
+    {
+        question: "What does CSS stand for?",
+        option1: "1. Cascading Style System",
+        option2: "2. Coding Style Sheets",
+        option3: "3. Cascading Style Sheets",
+        answer: "3"
+    },
+    {
+        question: "Which library belong to Javascript?",
+        option1: "1. Numpy",
+        option2: "2. jQuery",
+        option3: "3. .NET",
+        answer: "2"
+    },
+    {
+        question: "which one of these does not use FUNCTION?",
+        option1: "1. CSS",
+        option2: "2. Python",
+        option3: "3. Javascript",
         answer: "1"
     },
     {
-        question: "what is the answer?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
+        question: "What is <ul> in html?",
+        option1: "1. underline",
+        option2: "2. unorganized list",
+        option3: "3. unordered list",
         answer: "3"
     },
     {
-        question: "question 2?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
-        answer: "1"
+        question: "What does RBG stand for?",
+        option1: "1. Read Glow Brush",
+        option2: "2. Red Green Blue",
+        option3: "3. Red Grey Black",
+        answer: "2"
     },
     {
-        question: "what is the answer?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
-        answer: "3"
-    },
-    {
-        question: "question 2?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
-        answer: "1"
-    },
-    {
-        question: "what is the answer?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
-        answer: "3"
-    },
-    {
-        question: "what is the answer?",
-        option1: "this is the first option",
-        option2: "this is the second option",
-        option3: "option 3",
+        question: "What can't CSS do?",
+        option1: "1. Style web page",
+        option2: "2. create animations",
+        option3: "3. create functions",
         answer: "3"
     }
 ]
@@ -119,7 +119,7 @@ startBtn.addEventListener("click", function () {
     var timer = setInterval(function () {
         timerEl.textContent = timeLeft
         timeLeft--;
-        if (timeLeft === -1) {
+        if (timeLeft < 0) {
             clearInterval(timer);
             timerEl.textContent = 0
             quizBodyEl.textContent = "You ran out of time. You lose!"
