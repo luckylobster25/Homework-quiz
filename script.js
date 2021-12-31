@@ -1,15 +1,64 @@
 var timerEl = document.getElementById("timer")
 var startBtn = document.getElementById("start")
 var quizBodyEl = document.getElementById("main-body")
-var timeLeft = 500;
+var timeLeft = 20;
 
 var questions = [
+    {
+        question: "What is HTML?",
+        option1: "1. Hypertext Markup Language",
+        option2: "2. A frame work of another language",
+        option3: "3. A Javascript library",
+        answer: "1"
+    },
+    {
+        question: "What kind of language is CSS?",
+        option1: "1. Backend language",
+        option2: "2. Styling language",
+        option3: "3. Not a language",
+        answer: "2"
+    },
     {
         question: "what is the answer?",
         option1: "this is the first option",
         option2: "this is the second option",
         option3: "option 3",
         answer: "3"
+    },
+    {
+        question: "question 2?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "1"
+    },
+    {
+        question: "what is the answer?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "3"
+    },
+    {
+        question: "question 2?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "1"
+    },
+    {
+        question: "what is the answer?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "3"
+    },
+    {
+        question: "question 2?",
+        option1: "this is the first option",
+        option2: "this is the second option",
+        option3: "option 3",
+        answer: "1"
     },
     {
         question: "what is the answer?",
@@ -29,46 +78,51 @@ var questions = [
 
 
 startBtn.addEventListener("click", function () {
-    var i = 0
-    quizBodyEl.textContent = ""
-    var questionEl = document.createElement("ol")
-    var answerEl = document.createElement("input")
-    var submitEl = document.createElement("button")
-    questionEl.textContent = questions[i].question
-    option1 = document.createElement("li")
-    option1.textContent = questions[i].option1
-    questionEl.appendChild(option1)
-    quizBodyEl.appendChild(questionEl)
-    option2 = document.createElement("li")
-    option2.textContent = questions[i].option2
-    questionEl.appendChild(option2)
-    quizBodyEl.appendChild(questionEl)
-    option3 = document.createElement("li")
-    option3.textContent = questions[i].option3
-    questionEl.appendChild(option3)
-    quizBodyEl.appendChild(questionEl)
-    questionEl.appendChild(answerEl)
-    answerEl.setAttribute("placeholder", "Write your answer here")
-    submitEl.textContent = "Submit"
-    quizBodyEl.appendChild(submitEl)
-    submitEl.addEventListener("click", function () {
-        if (answerEl.value == questions[i].answer) {
-            console.log("you are right")
-            timeLeft += 15
-        }
-        else {
-            console.log(questions[i].answer)
-            console.log("wrong!")
-            timeLeft -= 5
-        }
-    })
+    var num = 0
+    startQuiz(num)
+    function startQuiz(num) {
+        var i = num
+        quizBodyEl.textContent = ""
+        var questionEl = document.createElement("ol")
+        var answerEl = document.createElement("input")
+        var submitEl = document.createElement("button")
+        questionEl.textContent = questions[i].question
+        option1 = document.createElement("li")
+        option1.textContent = questions[i].option1
+        questionEl.appendChild(option1)
+        quizBodyEl.appendChild(questionEl)
+        option2 = document.createElement("li")
+        option2.textContent = questions[i].option2
+        questionEl.appendChild(option2)
+        quizBodyEl.appendChild(questionEl)
+        option3 = document.createElement("li")
+        option3.textContent = questions[i].option3
+        questionEl.appendChild(option3)
+        quizBodyEl.appendChild(questionEl)
+        questionEl.appendChild(answerEl)
+        answerEl.setAttribute("placeholder", "Write your answer here")
+        submitEl.textContent = "Submit"
+        quizBodyEl.appendChild(submitEl)
+        submitEl.addEventListener("click", function () {
+            if (answerEl.value == questions[i].answer) {
+                timeLeft += 15
+                num += 1
+                startQuiz(num)
+            }
+            else {
+                timeLeft -= 10
+                num += 1
+                startQuiz(num)
+            }
+        })
+    }
     var timer = setInterval(function () {
         timerEl.textContent = timeLeft
         timeLeft--;
         if (timeLeft === -1) {
             clearInterval(timer);
             timerEl.textContent = 0
-            quizBodyEl.textContent = "You lose!"
+            quizBodyEl.textContent = "You ran out of time. You lose!"
         }
     }, 1000)
 })
