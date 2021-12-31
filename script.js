@@ -1,7 +1,7 @@
 var timerEl = document.getElementById("timer")
 var startBtn = document.getElementById("start")
 var quizBodyEl = document.getElementById("main-body")
-var timeLeft = 50;
+var timeLeft = 500;
 var breakLine = document.createElement("br")
 var questions = [
     {
@@ -75,8 +75,6 @@ var questions = [
         answer: "3"
     }
 ]
-
-
 startBtn.addEventListener("click", function () {
     var num = 0
     startQuiz(num)
@@ -119,8 +117,15 @@ startBtn.addEventListener("click", function () {
                     var recordBtnEl = document.createElement("button")
                     recordBtnEl.textContent = "RECORD"
                     quizBodyEl.appendChild(recordBtnEl)
-                    recordBtnEl.addEventListener("click", function(){
-                        var highScoreEl = localStorage.setItem(recordNameEl.value,timeLeft)
+                    recordBtnEl.addEventListener("click", function () {
+                        var highScore = localStorage.setItem(recordNameEl.value, timeLeft)
+                        var highScoreLink = document.getElementById("highscore")
+                        highScoreLink.addEventListener("click",function(){
+                            highScoreName = recordNameEl.value
+                            highScore = localStorage.getItem(highScoreName)
+                            historyScore = JSON.stringify(localStorage.valueOf(localStorage))
+                            quizBodyEl.textContent = historyScore
+                        })
                     })
                 }
             }
@@ -139,9 +144,18 @@ startBtn.addEventListener("click", function () {
                     var recordBtnEl = document.createElement("button")
                     recordBtnEl.textContent = "RECORD"
                     quizBodyEl.appendChild(recordBtnEl)
-                    recordBtnEl.addEventListener("click", function(){
-                        var highScoreEl = localStorage.setItem(recordNameEl.value,timeLeft)
+                    recordBtnEl.addEventListener("click", function () {
+                        highScoreName = recordNameEl.value
+                        var highScoreEl = localStorage.setItem(highScoreName, timeLeft)
+                        var highScoreLink = document.getElementById("highscore")
+                        highScoreLink.addEventListener("click",function(){
+                            highScoreName = recordNameEl.value
+                            highScore = localStorage.getItem(highScoreName)
+                            historyScore = JSON.stringify(localStorage.valueOf(localStorage))
+                            quizBodyEl.textContent = historyScore
+                        })
                     })
+
                 }
             }
         })
@@ -154,6 +168,5 @@ startBtn.addEventListener("click", function () {
             timerEl.textContent = 0
             quizBodyEl.textContent = "You ran out of time. You lose!"
         }
-
     }, 1000)
 })

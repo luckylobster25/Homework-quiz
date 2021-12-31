@@ -64,3 +64,8 @@ input {
 button {
     margin-top: 15px;
 }
+.highscore {
+    margin: 0px;
+    background: var(--limegreen);
+    border: none;
+}
