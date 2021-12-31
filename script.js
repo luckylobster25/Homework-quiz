@@ -2,7 +2,7 @@ var timerEl = document.getElementById("timer")
 var startBtn = document.getElementById("start")
 var quizBodyEl = document.getElementById("main-body")
 var timeLeft = 50;
-
+var breakLine = document.createElement("br")
 var questions = [
     {
         question: "What is HTML?",
@@ -107,25 +107,41 @@ startBtn.addEventListener("click", function () {
             if (answerEl.value == questions[i].answer) {
                 timeLeft += 15
                 num += 1
-                console.log(num)
-                if (num < 10) {
+                if (num < questions.length) {
                     startQuiz(num)
                 } else {
                     clearInterval(timer);
                     timerEl.textContent = timeLeft
-                    quizBodyEl.textContent = "You completed all ten questions and your time stop at " + timeLeft + "."
+                    quizBodyEl.textContent = "Your time stop at " + timeLeft + "."
+                    var recordNameEl = document.createElement("input")
+                    quizBodyEl.appendChild(breakLine)
+                    quizBodyEl.appendChild(recordNameEl)
+                    var recordBtnEl = document.createElement("button")
+                    recordBtnEl.textContent = "RECORD"
+                    quizBodyEl.appendChild(recordBtnEl)
+                    recordBtnEl.addEventListener("click", function(){
+                        var highScoreEl = localStorage.setItem(recordNameEl.value,timeLeft)
+                    })
                 }
             }
             else {
                 timeLeft -= 10
                 num += 1
-                console.log(num)
-                if (num < 10) {
+                if (num < questions.length) {
                     startQuiz(num)
                 } else {
                     clearInterval(timer);
                     timerEl.textContent = timeLeft
-                    quizBodyEl.textContent = "You completed all ten questions and your time stop at " + timeLeft + "."
+                    quizBodyEl.textContent = "Your time stop at " + timeLeft + "."
+                    var recordNameEl = document.createElement("input")
+                    quizBodyEl.appendChild(breakLine)
+                    quizBodyEl.appendChild(recordNameEl)
+                    var recordBtnEl = document.createElement("button")
+                    recordBtnEl.textContent = "RECORD"
+                    quizBodyEl.appendChild(recordBtnEl)
+                    recordBtnEl.addEventListener("click", function(){
+                        var highScoreEl = localStorage.setItem(recordNameEl.value,timeLeft)
+                    })
                 }
             }
         })
